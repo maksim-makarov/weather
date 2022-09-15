@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 50%;
+    margin: auto;
+}
+
+h1,
+h2 {
+    text-align: center;
+}
+
+.weather ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed black;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: blue;
+    font-weight: bold;
+
+}
+
+.options p {
+    cursor: pointer;
+}
+
+
+table {
+    border-spacing: 2px;
+    margin: 0 auto;
+    width: 30%;
+}

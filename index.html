@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>WEATHER</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>WEATHER APP</h1>
+      <form action="">
+        <p>
+          <input type="radio" name="units" value="metric" checked />
+          <label>Metric: °C, m/s</label>
+        </p>
+        <p>
+          <input type="radio" name="units" value="imperial" />
+          <label>Imperial: °F, mph</label>
+        </p>
+      </form>
+      <div id="output"></div>
+    </div>
+    <!-- <script src="./links.js"></script> -->
+    <script src="./dataservice.js"></script>
+    <script src="./dom.js"></script>
+    <script>
+      const form = document.forms[0];
+      let units = form.units.value;
+      let markers = [];
+      markers = ["C", "m/s"];
+
+      let kievWeatherUrl,
+        kievForecastUrl,
+        kievWeatherData,
+        londonWeatherUrl,
+        londonForecastUrl,
+        londonWeatherData,
+        nyWeatherUrl,
+        nyForecastUrl,
+        nyWeatherData,
+        munichWeatherUrl,
+        munichForecastUrl,
+        munichWeatherData,
+        dataView;
+
+      assamble(units);
+
+      function assamble(units) {
+        kievWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?id=703448&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
+        kievForecastUrl = `http://api.openweathermap.org/data/2.5/forecast?id=703448&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
+        londonWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?id=2643743&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
+        londonForecastUrl = `http://api.openweathermap.org/data/2.5/forecast?id=2643743&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
+        nyWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?id=5128638&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
+        nyForecastUrl = `http://api.openweathermap.org/data/2.5/forecast?id=5128638&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
+        munichWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?id=2867714&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
+        munichForecastUrl = `http://api.openweathermap.org/data/2.5/forecast?id=2867714&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
+
+        kievWeatherData = new DataService(
+          kievWeatherUrl,
+          kievForecastUrl,
+          markers
+        );
+        londonWeatherData = new DataService(
+          londonWeatherUrl,
+          londonForecastUrl,
+          markers
+        );
+        nyWeatherData = new DataService(nyWeatherUrl, nyForecastUrl, markers);
+        munichWeatherData = new DataService(
+          munichWeatherUrl,
+          munichForecastUrl,
+          markers
+        );
+
+        dataView = new WeatherView();
+
+        dataView.showWeather(kievWeatherData);
+        dataView.showWeather(londonWeatherData);
+        dataView.showWeather(nyWeatherData);
+        dataView.showWeather(munichWeatherData);
+      }
+
+      form.addEventListener("change", function () {
+        units = form.units.value;
+        if (units == "metric") {
+          markers = ["C", "m/s"];
+        } else if (units == "imperial") {
+          markers = ["F", "mph"];
+        }
+
+        assamble(units);
+
+        dataView.clearWeather();
+      });
+    </script>
+  </body>
+</html>
