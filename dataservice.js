@@ -24,7 +24,7 @@ class DataService {
       city: obj.name,
       temp: Math.round(obj.main.temp) + "&#176" + markers[0],
       weatherDescription: obj.weather[0].description,
-      iconLink: "http://openweathermap.org/img/wn/" +
+      iconLink: "https://openweathermap.org/img/wn/" +
         obj.weather[0]["icon"] +
         "@2x.png",
     };
@@ -55,7 +55,7 @@ class DataService {
         date: element.dt_txt.slice(0, 11),
         temp: Math.round(element.main.temp) + "&#176" + markers[0],
         weatherDescription: element.weather[0].description,
-        iconLink: "http://openweathermap.org/img/wn/" +
+        iconLink: "https://openweathermap.org/img/wn/" +
           element.weather[0].icon +
           "@2x.png",
       })
