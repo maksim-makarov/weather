@@ -3,46 +3,37 @@ let units = form.units.value;
 let markers = [];
 markers = ["C", "m/s"];
 
-let kievWeatherUrl,
-    kievForecastUrl,
-    kievWeatherData,
-    londonWeatherUrl,
-    londonForecastUrl,
-    londonWeatherData,
-    nyWeatherUrl,
-    nyForecastUrl,
-    nyWeatherData,
-    munichWeatherUrl,
-    munichForecastUrl,
-    munichWeatherData,
-    dataView;
+let cityId = {
+    kiev: "703448",
+    london: "2643743",
+    ny: "5128638",
+    munich: "2867714"
+}
+
+let urlBuilder = new UrlBuilder;
+
+let dataView
 
 assamble(units);
 
 function assamble(units) {
-    kievWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?id=703448&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
-    kievForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?id=703448&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
-    londonWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?id=2643743&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
-    londonForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?id=2643743&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
-    nyWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?id=5128638&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
-    nyForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?id=5128638&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
-    munichWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?id=2867714&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
-    munichForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?id=2867714&appid=bf35cac91880cb98375230fb443a116f&units=${units}`;
-
     kievWeatherData = new DataService(
-        kievWeatherUrl,
-        kievForecastUrl,
+        urlBuilder.getWeatherUrl(cityId.kiev, units),
+        urlBuilder.getForecastUrl(cityId.kiev, units),
         markers
     );
     londonWeatherData = new DataService(
-        londonWeatherUrl,
-        londonForecastUrl,
+        urlBuilder.getWeatherUrl(cityId.london, units),
+        urlBuilder.getForecastUrl(cityId.london, units),
         markers
     );
-    nyWeatherData = new DataService(nyWeatherUrl, nyForecastUrl, markers);
+    nyWeatherData = new DataService(
+        urlBuilder.getWeatherUrl(cityId.ny, units),
+        urlBuilder.getForecastUrl(cityId.ny, units), markers
+    );
     munichWeatherData = new DataService(
-        munichWeatherUrl,
-        munichForecastUrl,
+        urlBuilder.getWeatherUrl(cityId.munich, units),
+        urlBuilder.getForecastUrl(cityId.munich, units),
         markers
     );
 
