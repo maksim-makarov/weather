@@ -12,8 +12,6 @@ let cityId = {
 
 let urlBuilder = new UrlBuilder;
 
-let dataView
-
 assamble(units);
 
 function assamble(units) {
@@ -37,7 +35,7 @@ function assamble(units) {
         markers
     );
 
-    weatherView = new WeatherView();
+    weatherView = new DomWeatherView();
 
     weatherView.showWeather(kievWeatherData);
     weatherView.showWeather(londonWeatherData);

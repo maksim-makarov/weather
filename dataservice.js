@@ -32,7 +32,6 @@ class DataService {
 
   createDetailedObj(obj) {
     return {
-      // windDirection: obj.wind.deg + "&#176",
       windDirection: this.degToCompass(obj.wind.deg),
       windSpeed: obj.wind.speed + markers[1],
       press: obj.main.pressure + " hPa",
