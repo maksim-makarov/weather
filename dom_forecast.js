@@ -8,7 +8,7 @@ class ShowForecast {
 
     showForecast() {
         let forecastOutput = document.createElement("div");
-        forecastOutput.className = "weather";
+        forecastOutput.className = "weather forecast";
         (this.e.target.parentNode).parentNode.append(forecastOutput);
         this.data.forEach(element => {
             let weatherItems = document.createElement("ul");

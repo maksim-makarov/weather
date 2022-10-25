@@ -35,6 +35,12 @@ form p {
     align-items: center;
 }
 
+.forecast {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
 .weather img {
     width: 25%;
     filter: drop-shadow(5px 5px 5px rgba(255, 255, 255, 0.3));
