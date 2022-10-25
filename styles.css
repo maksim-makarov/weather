@@ -1,42 +1,120 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Inter',
+        sans-serif;
 }
 
-.container {
-    width: 50%;
-    margin: auto;
+.btn-outline-primary {
+    --bs-btn-color: #6151C3;
+    --bs-btn-border-color: #6151C3;
+    --bs-btn-hover-bg: #6151C3;
+    --bs-btn-hover-border-color: #6151C3;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #6151C3;
+    --bs-btn-active-border-color: #6151C3;
+    --bs-btn-disabled-color: #6151C3;
+    --bs-btn-disabled-border-color: #6151C3;
 }
 
-h1,
-h2 {
-    text-align: center;
+form {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
 }
 
-.weather ul {
-    list-style-type: none;
+
+form p {
+    margin: 0;
+}
+
+.weather {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px dashed black;
+}
+
+.weather img {
+    width: 25%;
+    filter: drop-shadow(5px 5px 5px rgba(255, 255, 255, 0.3));
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+h1 {
+    text-align: center;
+}
+
+.temp {
+    font-size: 3rem;
+}
+
+
+.element {
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #6151C3;
+    color: white;
+    border-radius: 30px;
+    margin-bottom: 15px;
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
 .options {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: blue;
-    font-weight: bold;
-
+    color: rgb(199, 197, 197);
 }
 
 .options p {
     cursor: pointer;
 }
 
+.detailedOutput {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 
-table {
-    border-spacing: 2px;
-    margin: 0 auto;
-    width: 30%;
+.detailedOutput img {
+    width: 24px;
+}
+
+.detailedOutput div {
+    display: flex;
+    justify-content: baseline;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+li {
+    list-style: none;
+}
+
+.weather ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+}
+
+.weather ul img {
+    width: 100%;
+}
+
+.weather ul li {
+    text-align: center;
+    justify-content: flex-start;
+
+    font-size: 0.8rem;
 }
