@@ -15,6 +15,7 @@ let urlBuilder = new UrlBuilder;
 assamble(units);
 
 function assamble(units) {
+
     kievWeatherData = new DataService(
         urlBuilder.getWeatherUrl(cityId.kiev, units),
         urlBuilder.getForecastUrl(cityId.kiev, units),
@@ -37,10 +38,18 @@ function assamble(units) {
 
     weatherView = new DomWeatherView();
 
-    weatherView.showWeather(kievWeatherData);
-    weatherView.showWeather(londonWeatherData);
-    weatherView.showWeather(nyWeatherData);
-    weatherView.showWeather(munichWeatherData);
+    let promises = [
+        kievWeatherData.getWeather(),
+        londonWeatherData.getWeather(),
+        nyWeatherData.getWeather(),
+        munichWeatherData.getWeather()
+    ]
+
+    Promise.all(promises).then((res) => {
+        res.forEach(element => {
+            weatherView.showWeather(element);
+        });
+    })
 }
 
 form.addEventListener("change", function () {

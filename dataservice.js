@@ -11,33 +11,15 @@ class DataService {
       .then((json) => this.createWeatherObj(json));
   }
 
-  getWeatherDetailed() {
-    return fetch(
-        this.weatherUrl
-      )
-      .then((response) => response.json())
-      .then((json) => this.createDetailedObj(json));
-  }
-
   createWeatherObj(obj) {
     return {
       city: obj.name,
+      id: obj.id,
       temp: Math.round(obj.main.temp) + "&#176" + markers[0],
       weatherDescription: obj.weather[0].description,
       iconLink: "https://openweathermap.org/img/wn/" +
         obj.weather[0]["icon"] +
         "@2x.png",
-    };
-  }
-
-  createDetailedObj(obj) {
-    return {
-      windDirection: this.degToCompass(obj.wind.deg),
-      windSpeed: obj.wind.speed + markers[1],
-      press: obj.main.pressure + " hPa",
-      sunrise: (new Date(obj.sys.sunrise * 1000)).getHours() + ":" + (new Date(obj.sys.sunrise * 1000)).getMinutes(),
-      sunset: (new Date(obj.sys.sunset * 1000)).getHours() + ":" + (new Date(obj.sys.sunset * 1000)).getMinutes(),
-
     };
   }
 
@@ -60,11 +42,5 @@ class DataService {
       })
     });
     return forecastArr;
-  }
-
-  degToCompass(num) {
-    const val = Math.floor((num / 45) + 0.5);
-    const arr = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
-    return arr[(val % 8)]
   }
 }
